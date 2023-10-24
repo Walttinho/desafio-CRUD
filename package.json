@@ -4,7 +4,7 @@
   "description": "Desafio de ingresso CRUD da Escola Generation Brasil",
   "main": "./src/server.js",
   "scripts": {
-    "star": "node ./src/server.js",
+    "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
     "test": "jest"
   },
