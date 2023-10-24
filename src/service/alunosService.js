@@ -25,4 +25,10 @@ const obterAluno = async (id) => {
   return resultado;
 }
 
-module.exports = { criarAluno, obterAluno};
+const listarAlunos = async () => {
+  const resultado = await alunoRepository.listarAlunos();
+
+  return resultado;
+}
+
+module.exports = { criarAluno, obterAluno,listarAlunos};

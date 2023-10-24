@@ -24,4 +24,14 @@ const obterAluno = async (req, res) => {
   }
 };
 
-module.exports = { criarAluno , obterAluno};
+const listarAlunos = async (req,res)=>{
+  try {
+    const resultado = await AlunoService.listarAlunos();
+
+    res.status(200).json( resultado );
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+}
+
+module.exports = { criarAluno , obterAluno, listarAlunos};
