@@ -35,4 +35,19 @@ const listarAlunos = async () => {
   return lista;
 };
 
-module.exports = { criarAluno, alunoExistente, obterAluno , listarAlunos};
+const atualizarAluno = async (id, alunoData) => {
+  const aluno = await knex("alunos")
+    .where("id", id)
+    .update(alunoData)
+    .returning("*");
+
+  return aluno;
+};
+
+module.exports = {
+  criarAluno,
+  alunoExistente,
+  obterAluno,
+  listarAlunos,
+  atualizarAluno,
+};

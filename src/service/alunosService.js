@@ -1,8 +1,9 @@
 const alunoRepository = require("../repository/alunosRepository");
 const schemaAluno = require("../middleware/validacao.middleware");
+const { resourceLimits } = require("worker_threads");
 
 const criarAluno = async (alunoData) => {
-  const { error } = await schemaAluno.validate(alunoData);
+  const { error } = schemaAluno.validate(alunoData);
 
   if (error) {
     return { error };
@@ -23,12 +24,31 @@ const obterAluno = async (id) => {
   const resultado = await alunoRepository.obterAluno(id);
 
   return resultado;
-}
+};
 
 const listarAlunos = async () => {
   const resultado = await alunoRepository.listarAlunos();
 
   return resultado;
-}
+};
 
-module.exports = { criarAluno, obterAluno,listarAlunos};
+const atualizarAluno = async (id, alunoData) => {
+  const alunoExistente = await alunoRepository.obterAluno(id);
+
+  if (!alunoExistente) {
+    throw new Error(
+      "Aluno não encontrado no banco de dados. A atualização não foi realizada."
+    );
+  }
+
+  const resultado = await alunoRepository.atualizarAluno(id, alunoData);
+
+  return resultado[0];
+};
+
+module.exports = {
+  criarAluno,
+  obterAluno,
+  listarAlunos,
+  atualizarAluno,
+};

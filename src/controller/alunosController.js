@@ -18,20 +18,32 @@ const obterAluno = async (req, res) => {
     const id = req.params.id;
     const resultado = await AlunoService.obterAluno(id);
 
-    res.status(200).json( resultado );
+    res.status(200).json(resultado);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
-const listarAlunos = async (req,res)=>{
+const listarAlunos = async (req, res) => {
   try {
     const resultado = await AlunoService.listarAlunos();
 
-    res.status(200).json( resultado );
+    res.status(200).json(resultado);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
-}
+};
 
-module.exports = { criarAluno , obterAluno, listarAlunos};
+const atualizarAluno = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const alunoData = req.body;
+    const resultado = await AlunoService.atualizarAluno(id, alunoData);
+
+    res.status(200).json(resultado);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { criarAluno, obterAluno, listarAlunos, atualizarAluno };
