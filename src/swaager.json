@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3000",
       "description": "Servidor local"
+    },
+    {
+      "url": "https://crud-alunos.onrender.com/",
+      "description": "Servidor Web"
     }
   ],
   "paths": {
