@@ -19,4 +19,10 @@ const criarAluno = async (alunoData) => {
   return resultado;
 };
 
-module.exports = { criarAluno };
+const obterAluno = async (id) => {
+  const resultado = await alunoRepository.obterAluno(id);
+
+  return resultado;
+}
+
+module.exports = { criarAluno, obterAluno};

@@ -24,4 +24,10 @@ const alunoExistente = async (nome) => {
   return aluno;
 };
 
-module.exports = { criarAluno, alunoExistente };
+const obterAluno = async (id) => {
+  const aluno = await knex("alunos").where("id", id);
+
+  return aluno[0];
+};
+
+module.exports = { criarAluno, alunoExistente, obterAluno };

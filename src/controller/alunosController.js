@@ -13,4 +13,15 @@ const criarAluno = async (req, res) => {
   }
 };
 
-module.exports = { criarAluno };
+const obterAluno = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const resultado = await AlunoService.obterAluno(id);
+
+    res.status(200).json( resultado );
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { criarAluno , obterAluno};
