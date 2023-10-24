@@ -20,6 +20,7 @@
       "post": {
         "summary": "Cadastrar um novo aluno",
         "description": "Endpoint para cadastrar um novo aluno",
+        "tags": ["Alunos"],
         "requestBody": {
           "required": true,
           "content": {
@@ -49,6 +50,7 @@
       "get": {
         "summary": "Listar todos os alunos",
         "description": "Endpoint para listar todos os alunos",
+        "tags": ["Alunos"],
         "responses": {
           "200": {
             "description": "Lista de alunos",
@@ -73,6 +75,7 @@
       "get": {
         "summary": "Obter um aluno específico",
         "description": "Endpoint para obter um aluno específico",
+        "tags": ["Alunos"],
         "parameters": [
           {
             "name": "id",
@@ -103,6 +106,7 @@
       "patch": {
         "summary": "Atualizar um aluno",
         "description": "Endpoint para atualizar um aluno",
+        "tags": ["Alunos"],
         "parameters": [
           {
             "name": "id",
@@ -143,6 +147,7 @@
       "delete": {
         "summary": "Excluir um aluno",
         "description": "Endpoint para excluir um aluno",
+        "tags": ["Alunos"],
         "parameters": [
           {
             "name": "id",
