@@ -176,12 +176,22 @@
           "idade": {
             "type": "integer"
           },
-          "email": {
-            "type": "string",
-            "format": "email"
+          "nota_primeiro_semestre": {
+            "type": "number",
+            "format": "float"
+          },
+          "nota_segundo_semestre": {
+            "type": "number",
+            "format": "float"
+          },
+          " nome_do_professor": {
+            "type": "string"
+          },
+          "numero_da_classe": {
+            "type": "integer"
           }
         },
-        "required": ["nome", "idade", "email"]
+        "required": ["nome", "idade", " nome_do_professor", "numero_da_classe"]
       }
     }
   }
