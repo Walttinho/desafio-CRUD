@@ -1,0 +1,184 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Alunos",
+    "description": "API para gerenciamento de alunos",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/alunos": {
+      "post": {
+        "summary": "Cadastrar um novo aluno",
+        "description": "Endpoint para cadastrar um novo aluno",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Aluno cadastrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao cadastrar o aluno"
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar todos os alunos",
+        "description": "Endpoint para listar todos os alunos",
+        "responses": {
+          "200": {
+            "description": "Lista de alunos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao listar os alunos"
+          }
+        }
+      }
+    },
+    "/alunos/{id}": {
+      "get": {
+        "summary": "Obter um aluno específico",
+        "description": "Endpoint para obter um aluno específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do aluno",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluno encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao obter o aluno"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar um aluno",
+        "description": "Endpoint para atualizar um aluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do aluno",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar o aluno"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um aluno",
+        "description": "Endpoint para excluir um aluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do aluno",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluno excluído com sucesso"
+          },
+          "400": {
+            "description": "Erro ao excluir o aluno"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": ["nome", "idade", "email"]
+      }
+    }
+  }
+}
