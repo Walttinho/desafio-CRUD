@@ -46,9 +46,24 @@ const atualizarAluno = async (id, alunoData) => {
   return resultado[0];
 };
 
+const deleteAluno = async (id) => {
+  const alunoExistente = await alunoRepository.obterAluno(id);
+
+  if (!alunoExistente) {
+    throw new Error(
+      "Aluno não encontrado no banco de dados. A atualização não foi realizada."
+    );
+  }
+
+  await alunoRepository.deleteAluno(id);
+
+  return "Aluno excluído com sucesso.";
+};
+
 module.exports = {
   criarAluno,
   obterAluno,
   listarAlunos,
   atualizarAluno,
+  deleteAluno,
 };

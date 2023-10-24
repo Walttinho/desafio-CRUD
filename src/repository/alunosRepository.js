@@ -43,6 +43,11 @@ const atualizarAluno = async (id, alunoData) => {
 
   return aluno;
 };
+const deleteAluno = async (id) => {
+  const aluno = await knex("alunos").where("id", id).del();
+
+  return aluno;
+};
 
 module.exports = {
   criarAluno,
@@ -50,4 +55,5 @@ module.exports = {
   obterAluno,
   listarAlunos,
   atualizarAluno,
+  deleteAluno,
 };

@@ -45,5 +45,17 @@ const atualizarAluno = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+const deleteAluno = async (req,res)=>{
+  try {
+    const id = req.params.id;
+    const resultado = await AlunoService.deleteAluno(id);
 
-module.exports = { criarAluno, obterAluno, listarAlunos, atualizarAluno };
+    res.status(200).json( resultado );
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+
+}
+
+
+module.exports = { criarAluno , obterAluno, listarAlunos, atualizarAluno, deleteAluno};
