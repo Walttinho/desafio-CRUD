@@ -1,12 +1,17 @@
-const joi = require("joi");
+const yup = require('yup');
+const {pt} = require('yup-locale-pt')
 
-const schemaAluno = joi.object({
-  nome: joi.string().min(3).required(),
-  idade: joi.number().integer().required(),
-  nota_primeiro_semestre: joi.number().precision(2),
-  nota_segundo_semestre:joi.number().precision(2),
-  nome_do_professor: joi.string().min(3).required(),
-  numero_da_classe: joi.number().integer().required(),
+
+yup.setLocale(pt);
+
+const schemaAluno = yup.object().shape({
+  nome: yup.string().min(3).required('Nome é obrigatório'),
+  idade: yup.number().integer().required('Idade é obrigatória'),
+  nota_primeiro_semestre: yup.number().typeError('A nota do primeiro semestre deve ser um número').nullable(),
+  nota_segundo_semestre: yup.number().typeError('A nota do segundo semestre deve ser um número').nullable(),
+  nome_do_professor: yup.string().min(3).required('Nome do professor é obrigatório'),
+  numero_da_classe: yup.number().integer().required('Número da classe é obrigatório'),
 });
+
 
 module.exports = schemaAluno

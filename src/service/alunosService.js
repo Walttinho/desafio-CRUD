@@ -1,18 +1,20 @@
 const alunoRepository = require("../repository/alunosRepository");
 const schemaAluno = require("../middleware/validacao.middleware");
-const { resourceLimits } = require("worker_threads");
 
 const criarAluno = async (alunoData) => {
-  const { error } = schemaAluno.validate(alunoData);
-
-  if (error) {
-    return { error };
+  try {
+    await schemaAluno.validate(alunoData, { abortEarly: false });
+  } catch (error) {
+    const errorMessage = error.inner.map((detail) => detail.message).join(", ");
+    const statusCode = 400;
+    throw { statusCode, message: errorMessage };
   }
 
   const alunoExistente = await alunoRepository.alunoExistente(alunoData.nome);
 
   if (alunoExistente.length > 0) {
-    throw new Error("Nome de aluno já existe no banco de dados.");
+    const statusCode = 409;
+    throw { statusCode, message: "Nome de aluno já existe no banco de dados." };
   }
 
   const resultado = await alunoRepository.criarAluno(alunoData);

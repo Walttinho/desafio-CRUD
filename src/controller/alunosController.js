@@ -5,13 +5,17 @@ const criarAluno = async (req, res) => {
     const alunoData = req.body;
     const resultado = await AlunoService.criarAluno(alunoData);
 
-    res
-      .status(201)
-      .json({ mensagem: "Aluno Cadastrado com Sucesso", resultado });
+    res.status(201).json({ mensagem: "Aluno Cadastrado com Sucesso", resultado });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    if (error.statusCode) {
+      return res.status(error.statusCode).json({ error: error.message });
+    } else {
+      // Se o erro não tiver um statusCode definido, trate como erro interno do servidor (500)
+      return res.status(500).json({ error: "Erro interno do servidor" });
+    }
   }
 };
+
 
 const obterAluno = async (req, res) => {
   try {
