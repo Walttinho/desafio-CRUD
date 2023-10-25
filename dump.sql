@@ -1,4 +1,4 @@
--- Active: 1695136085980@@127.0.0.1@5432@escola
+-- Active: 1696994691264@@Cubos_Render@5432@escola
 CREATE DATABASE escola;
 
 CREATE TABLE alunos (

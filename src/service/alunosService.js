@@ -22,7 +22,9 @@ const criarAluno = async (alunoData) => {
 
 const obterAluno = async (id) => {
   const resultado = await alunoRepository.obterAluno(id);
-
+  if (!resultado) {
+    throw new Error("Aluno não encontrado no banco de dados.");
+  }
   return resultado;
 };
 

@@ -189,7 +189,7 @@
             "type": "number",
             "format": "float"
           },
-          " nome_do_professor": {
+          "nome_do_professor": {
             "type": "string"
           },
           "numero_da_classe": {
