@@ -103,7 +103,7 @@
           }
         }
       },
-      "patch": {
+      "put": {
         "summary": "Atualizar um aluno",
         "description": "Endpoint para atualizar um aluno",
         "tags": ["Alunos"],
